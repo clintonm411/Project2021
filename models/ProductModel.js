@@ -28,7 +28,7 @@ const ProductSchema = new mongoose.Schema(
             required: true
         },
         duration: {
-            type: number,
+            type: Integer,
             required: true
         },
         podcastLink: {
