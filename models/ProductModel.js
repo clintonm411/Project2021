@@ -31,7 +31,7 @@ const ProductSchema = new mongoose.Schema(
             type: Integer,
             required: true
         },
-        podcastLink: {
+        mediaLink: {
             type: String,
             required: true
         },
