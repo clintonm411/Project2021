@@ -2,58 +2,24 @@ const express = require('express');
 const router = express.Router();
 const ProductModel = require('../models/ProductModel.js')
 
-
+//Show all products
 router.get( '/productlist',
-    function (req, res) {
+    function(req, res) {
 
-        // Product Listing
-        let products = [
-            {
-                'Slide': 'Vocabulary - Letter A',
-                'Description': 'This is an alphabet game for letter A',
-                'Activity': 'Complete the exercise 1!'
-            },
-            {
-                'Slide': 'Vocabulary - Letter B',
-                'Description': 'This is an alphabet game for letter B',
-                'Activity': 'Complete the exercise 2!'
-            },
-            {
-                'Slide': 'Vocabulary - Letter C',
-                'Description': 'This is an alphabet game for letter C',
-                'Activity': 'Complete the exercise 3!'
-            },
-            {
-                'Slide': 'Vocabulary - Letter D',
-                'Description': 'This is an alphabet game for letter D',
-                'Activity': 'Complete the exercise 4!'
-            },
-            {
-                'Slide': 'Vocabulary - Letter E',
-                'Description': 'This is an alphabet game for letter E',
-                'Activity': 'Complete the exercise 5!'
+        ProductModel
+        .find({ })
+        .then(
+            function(dbDocument) {
+                res.send(dbDocument)
             }
-        ];
-
-        // Filter Products
-        function theFilter(product) {
-            if (
-                product.slide === req.query.slide &&
-                product.Activity <= req.query.Activity  
-            ) {
-                return product
-            }
-        }
-
-        let filteredProducts = products.filter(theFilter);
-
-
-
-        res.send(`
-            <h1>Product List</h1>
-            ` +
-            filteredProducts.map(createListItem)
         )
+        .catch(
+            function(mongooseError) {
+                console.log(mongooseError)
+                res.send("Error occured. Check again!");
+            }
+        )
+
     }
 );
 
@@ -114,6 +80,7 @@ router.get('/find',
     }
 )
 
+//Find Products by Name
 router.get('/findByName',
     function(req, res) {
 
@@ -136,6 +103,7 @@ router.get('/findByName',
     }
 )
 
+//Find Products by Age Group
 router.get('/findByAgeGroup',
     function(req, res) {
 
