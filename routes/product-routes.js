@@ -62,10 +62,14 @@ router.post('/create',            // http://localhost:3001/products/create
     function(req, res) {
         
         const formData = {
-            slide: req.body.slide,
-            AgeGroup: req.body.AgeGroup,
-            Description: req.body.Description,
-            ActivityList: req.body.ActivityList
+            name: req.body.name,
+            ageGroup: req.body.ageGroup,
+            description: req.body.description,
+            activityList: req.body.activityList,
+            mediaType: req.body.mediaType,
+            youtubeLink: req.body.youtubeLink,
+            duration: req.body.duration,
+            mediaLink: req.body.mediaLink
         };
 
         
