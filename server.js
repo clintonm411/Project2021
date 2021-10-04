@@ -8,3 +8,8 @@ require('dotenv').config();
 // express() returns an object with all kinds
 // of methods for handling HTTP requests
 const server = express();
+
+// Import the user routes
+const userRoutes = require('./routes/user-routes.js');
+// Import the user routes
+const productRoutes = require('./routes/product-routes.js');
