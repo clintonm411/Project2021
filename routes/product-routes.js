@@ -132,4 +132,26 @@ router.get('/findByName',
     }
 )
 
+router.get('/findByAgeGroup',
+    function(req, res) {
+
+        let ageGroupQuery = req.query.ageGroup;
+
+        ProductModel
+        .find({ ageGroup: { get: ageGroupQuery } })
+        .then(
+            function(dbDocument) {
+                res.send(dbDocument)
+            }
+        )
+        .catch(
+            function(mongooseError) {
+                console.log(mongooseError)
+                res.send("Error occured. Check again!");
+            }
+        )
+
+    }
+)
+
 module.exports = router;
