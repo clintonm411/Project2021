@@ -110,4 +110,26 @@ router.get('/find',
     }
 )
 
+router.get('/findByName',
+    function(req, res) {
+
+        let nameQuery = req.query.name;
+
+        ProductModel
+        .find({ name: { get: nameQuery } })
+        .then(
+            function(dbDocument) {
+                res.send(dbDocument)
+            }
+        )
+        .catch(
+            function(mongooseError) {
+                console.log(mongooseError)
+                res.send("Error occured. Check again!");
+            }
+        )
+
+    }
+)
+
 module.exports = router;
