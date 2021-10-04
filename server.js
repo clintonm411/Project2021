@@ -33,3 +33,10 @@ server.get(
         res.send("<h1>Welcome Home</h1>");
     }
 );
+
+server.listen(
+    process.env.PORT || 3001,
+    function() {
+        console.log('Server running on http://localhost:3001/')
+    }
+);
