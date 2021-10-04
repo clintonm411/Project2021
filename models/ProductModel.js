@@ -25,7 +25,7 @@ const ProductSchema = new mongoose.Schema(
         },
         youtubeLink: {
             type: String,
-            required: true
+            required: false
         },
         duration: {
             type: Integer,
@@ -37,7 +37,7 @@ const ProductSchema = new mongoose.Schema(
         },
         ActivityList: {
             type: String,
-            required: true
+            required: false
         }
     }
 );
