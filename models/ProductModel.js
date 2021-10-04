@@ -7,15 +7,15 @@ const mongoose = require('mongoose');
 
 const ProductSchema = new mongoose.Schema(
     {
-        Name: {
+        name: {
             type: String,
             required: true
         },
-        AgeGroup: {
+        ageGroup: {
             type: String,
             required: true
         },
-        Description: {
+        description: {
             type: Number,
             required: true
         },
