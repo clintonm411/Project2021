@@ -24,3 +24,12 @@ server.use( cors() );
 //Configure for routes
 server.use('/users',userRoutes)
 server.use('/products',productRoutes)
+
+
+// A GET route
+server.get(
+    '/', // document
+    function (req, res) { //callback function
+        res.send("<h1>Welcome Home</h1>");
+    }
+);
