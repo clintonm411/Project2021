@@ -19,6 +19,22 @@ const ProductSchema = new mongoose.Schema(
             type: Number,
             required: true
         },
+        mediaType: {
+            type: String,
+            required: true
+        },
+        youtubeLink: {
+            type: String,
+            required: true
+        },
+        duration: {
+            type: number,
+            required: true
+        },
+        podcastLink: {
+            type: String,
+            required: true
+        },
         ActivityList: {
             type: String,
             required: true
