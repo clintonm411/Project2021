@@ -4,6 +4,7 @@ const bcryptjs = require('bcryptjs');
 const UserModel = require('../models/UserModel.js');
 const { response } = require('express');
 
+//create route
 router.post(
     '/create',            // http://localhost:3001/users/create
     function(req, res) {
@@ -90,6 +91,7 @@ router.post(
     }
 );
 
+//login route
 router.post(
     '/login', 
     function(req, res) {
@@ -97,6 +99,7 @@ router.post(
     }
 );
 
+//logout route
 router.post(
     '/logout', 
     function(req, res) {
@@ -104,6 +107,7 @@ router.post(
     }
 );
 
+//update route
 router.post(
     '/update', 
     function(req, res) {
