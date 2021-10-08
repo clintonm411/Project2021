@@ -34,6 +34,44 @@ server.get(
     }
 );
 
+server.get(
+    '/blog/:year/:month/:day/:title',
+    function(req, res) {
+
+        let year = req.params.year;
+        let month = req.params.month;
+        let day = req.params.day;
+        let title = req.params.title;
+
+        res.send(
+            `
+                <h1>Blog</h1>
+                <p>Date: ${day}/${month}/${year}</p>
+                <h2>${title}</h2>
+            `
+        );
+    }
+);
+
+server.get(
+    '/:title',
+    function(req, res) {
+
+        // let year = req.params.year;
+        // let month = req.params.month;
+        // let day = req.params.day;
+        let title = req.params.title;
+
+        res.send(
+            `
+                <h1>${title}</h1>
+                
+                <h2>${title}</h2>
+            `
+        );
+    }
+);
+
 server.listen(
     process.env.PORT || 3001,
     function() {
