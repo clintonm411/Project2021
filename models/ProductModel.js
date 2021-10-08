@@ -28,7 +28,7 @@ const ProductSchema = new mongoose.Schema(
             required: false
         },
         duration: {
-            type: Integer,
+            type: Number,
             required: true
         },
         mediaLink: {
