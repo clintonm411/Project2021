@@ -88,27 +88,27 @@ router.post(
         )
         .catch()
     }
-)
+);
 
 router.post(
     '/login', 
     function(req, res) {
 
     }
-)
+);
 
 router.post(
     '/logout', 
     function(req, res) {
 
     }
-)
+);
 
 router.post(
     '/update', 
     function(req, res) {
 
     }
-)
+);
 
 module.exports = router;
