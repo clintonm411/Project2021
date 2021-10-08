@@ -78,7 +78,7 @@ router.get('/find',
         )
 
     }
-)
+);
 
 //Find Products by Name
 router.get('/findByName',
@@ -101,7 +101,7 @@ router.get('/findByName',
         )
 
     }
-)
+);
 
 //Find Products by Age Group
 router.get('/findByAgeGroup',
@@ -124,6 +124,6 @@ router.get('/findByAgeGroup',
         )
 
     }
-)
+);
 
 module.exports = router;
