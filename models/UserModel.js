@@ -19,6 +19,18 @@ const UserSchema = new mongoose.Schema(
         password: {
             type: String,
             required: true
+        },
+        avatar: {
+            type: String,
+            required: true
+        },
+        subcribed: {
+            type: Boolean,
+            required: true
+        },
+        loggedIn: {
+            type: Boolean,
+            required: true
         }
     }
 )
