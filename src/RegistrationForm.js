@@ -6,88 +6,87 @@ function RegistrationForm() {
     // (1) initial, (2) loading, (3) validationFailed, (4) successful, (5) unsuccessful
     const [state, setState] = useState("initial");
 
-    function registerUser(){
-// (1) Read the values in the input elements
-let firstNameField;
-let lastNameField;
-let emailField;
-let passwordField;
-let phoneField;
-let termsAndConditions;
+    // (1) Read the values in the input elements
+    let firstNameField;
+    let lastNameField;
+    let emailField;
+    let passwordField;
+    let phoneField;
+    let termsAndConditions;
 
 
-// This will store text data and attachments
-const formData = new FormData();
+    // This will store text data and attachments
+    const formData = new FormData();
 
-function validateEmail (email) {
-    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-}
-
-function validatePassword (password) {
-    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/;
-    return re.test(password);
-}
-
-function register() {
-        
-
-    // (2) Validate the value
-    const errors = [];
-
-    if( firstNameField.value.length === 0 ) {
-        errors.push('Please enter first name');
+    function validateEmail (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
     }
-
-    if( lastNameField.value.length === 0 ) {
-        errors.push('Please enter last name');
-    }
-
-    if( !validateEmail(emailField.value) ) {
-        errors.push('Please enter valid email');
-    }
-
-    if( !validatePassword(passwordField.value) ) {
-        errors.push('Please enter a password');
-    }
-
-    if( termsAndConditions.checked === false) {
-        errors.push('Please accept the terms & conditions');
-    }
-
-    // If the required fields are valid
-    if( errors.length === 0 ) {
-        // Register data
     
-        fetch(
-            'http://localhost:3001/users/create',
-            {
-                method: 'POST',
-                headers: {
-                    'Content-type': 'application/json'
-                },
-                body: ''
-            }
-        )
-        .then(
-            function(backendResponse) {
-            }
-        )
-        .then(
-            function(jsonResponse) {
-            }
-        )
-        .catch(
-            function(backendError) {
-            }
-        )
-
-    } 
-    // If the required fields are NOT valid
-    else {
-        // Indicate the error
+    function validatePassword (password) {
+        const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/;
+        return re.test(password);
     }
-}
+    
+    function register() {
+            
+    
+        // (2) Validate the value
+        const errors = [];
+    
+        if( firstNameField.value.length === 0 ) {
+            errors.push('Please enter first name');
+        }
+    
+        if( lastNameField.value.length === 0 ) {
+            errors.push('Please enter last name');
+        }
+    
+        if( !validateEmail(emailField.value) ) {
+            errors.push('Please enter valid email');
+        }
+    
+        if( !validatePassword(passwordField.value) ) {
+            errors.push('Please enter a password');
+        }
+    
+        if( termsAndConditions.checked === false) {
+            errors.push('Please accept the terms & conditions');
+        }
+    
+        // If the required fields are valid
+        if( errors.length === 0 ) {
+            // Register data
+        
+            fetch(
+                'http://localhost:3001/users/create',
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    body: ''
+                }
+            )
+            .then(
+                function(backendResponse) {
+                }
+            )
+            .then(
+                function(jsonResponse) {
+                }
+            )
+            .catch(
+                function(backendError) {
+                }
+            )
+    
+        } 
+        // If the required fields are NOT valid
+        else {
+            // Indicate the error
+        }
+    }
 
     return (
         <div className="container" style={{"margin-top": "5em", "max-width": "40em"}}>
@@ -105,9 +104,6 @@ function register() {
 
             <label>Enter a password *</label>
             <input className="field form-control" name="password" autocomplete="off" type="password" />
-
-            <label>Enter your phone (optional)</label>
-            <input className="field form-control" name="phone" type="text" />
 
             <br/><br/>
 
@@ -135,7 +131,7 @@ function register() {
             {
                 (state !== 'loading' && state !== 'successful') &&
                 <button 
-                onClick = {registerUser}
+                onClick={register}
                 className="btn btn-primary"
                 style={{"padding": "10px", "font-size": "16px"}}>
                     Register your Interest
@@ -164,6 +160,6 @@ function register() {
         </div>
     )
 }
-}
-    
+
+
 export default RegistrationForm;
