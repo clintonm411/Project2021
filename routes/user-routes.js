@@ -4,8 +4,8 @@ const bcryptjs = require('bcryptjs');
 const UserModel = require('../models/UserModel.js');
 const { response } = require('express');
 
-router.post(
-    '/create',            // http://localhost:3001/users/create
+// http://localhost:3001/users/create
+router.post('/create',            
     function(req, res) {
         
 
@@ -71,9 +71,8 @@ router.post(
     }
 );
 
-
-router.post(
-    '/find', 
+// http://localhost:3001/users/find
+router.post('/find', 
     function(req, res) {
         UserModel
         .findOne({ email: req.body.email })
@@ -90,20 +89,21 @@ router.post(
     }
 );
 
-router.post(
-    '/login', 
+// http://localhost:3001/users/login
+router.post('/login', 
     function(req, res) {
 
     }
 );
 
-router.post(
-    '/logout', 
+// http://localhost:3001/users/logout
+router.post('/logout', 
     function(req, res) {
 
     }
 );
 
+// http://localhost:3001/users/update
 router.post(
     '/update', 
     function(req, res) {
