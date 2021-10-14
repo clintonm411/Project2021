@@ -15,9 +15,9 @@ function NavBar(props) {
                 <li><a href={props.link3} className="nav-link px-2 text-white">{props.label3}</a></li>
                 </ul>
         
-                <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
+                {/* <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                 <input type="search" className="form-control form-control-dark" placeholder="Search..." aria-label="Search"/>
-                </form>
+                </form> */}
         
                 <div className="text-end">
                 <button type="button" className="btn btn-outline-light me-2">Login</button>
