@@ -10,7 +10,7 @@ function LayoutRoute(props) {
                 link1={{label:"Home", path: "/"}} 
                 link2={{label: "About", path: "/about"}} 
                 link3={{label: "Podcasts", path: "/podcasts"}}
-                navImage="./logo-anim-2.png"
+                navImage="https://res.cloudinary.com/dxfkzwedw/image/upload/v1634393258/story_time_haven_unecpa.jpg"
                 signUp={{label: "Register", path: "/register"}}
             ></NavBar>
             <Route path={props.path} exact={props.exact} component={props.component} />
