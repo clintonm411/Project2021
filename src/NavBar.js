@@ -20,8 +20,8 @@ function NavBar(props) {
                 </form> */}
         
                 <div className="text-end">
-                <button type="button" className="btn btn-outline-light me-2">Login</button>
-                <button type="button" className="btn btn-warning">Sign-up</button>
+                <a href="/login"><button type="button" className="btn btn-outline-light me-2">Login</button></a>
+                <a href={props.signUp.path}><button type="button" className="btn btn-warning">{props.signUp.label}</button></a>
                 </div>
             </div>
             </div>
