@@ -11,7 +11,7 @@ function Card(props) {
             </div>
             <ul className="d-flex list-unstyled mt-auto">
               <li className="me-auto">
-                <a href="/about"><img src="./story_time_haven.jpeg" alt="StoryTimeHaven" width="32" height="32" className="rounded-circle border border-white"/></a>
+                <a href="/about"><img src="https://res.cloudinary.com/dxfkzwedw/image/upload/v1634393258/story_time_haven_unecpa.jpg" width="32" height="32" className="rounded-circle border border-white"/></a>
               </li>
               <li className="d-flex align-items-center me-3">
                 {/* <svg className="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg> */}
