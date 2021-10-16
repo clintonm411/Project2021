@@ -7,7 +7,7 @@ function Card(props) {
           <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 className="pt-1 mt-1 mb-1 display-6 lh-1 fw-bold">{props.description}</h2>
             <div className="ratio ratio-1x1 mt-3 mb-3">
-                      <iframe src="https://www.youtube.com/embed/BK64WNo10iU?start=9" title="YouTube video" allowfullscreen></iframe>
+                      <iframe src={props.youtubeLink} title="YouTube video" allowfullscreen></iframe>
             </div>
             <ul className="d-flex list-unstyled mt-auto">
               <li className="me-auto">
