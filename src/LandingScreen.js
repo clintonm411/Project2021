@@ -5,7 +5,7 @@ import Hero from './Hero.js';
 import Card from './Card.js';
 import Footer from './Footer.js';
 
-function App() {
+function LandingScreen() {
   return (
     <div>
       <div>
@@ -88,4 +88,4 @@ function App() {
   );
 }
 
-export default App;
+export default LandingScreen;
