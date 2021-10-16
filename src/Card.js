@@ -8,13 +8,13 @@ function Card(props) {
             <p className="p-1 mb-1 lh-1">{props.description}</p>
             
               {
-                (props.youtubeLink) &&
+                (props.youtubeEmbedLink) &&
                 <div className="ratio ratio-1x1 mt-3 mb-3">
-                <iframe src={props.youtubeLink} title="YouTube video" allowfullscreen></iframe>
+                <iframe src={props.youtubeEmbedLink} title="YouTube video" allowfullscreen></iframe>
                 </div>
               }
               {
-                !(props.youtubeLink) &&
+                !(props.youtubeEmbedLink) &&
                 <h2>Coming Soon</h2>
               }
                       

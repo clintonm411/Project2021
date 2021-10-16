@@ -23,7 +23,7 @@ const ProductSchema = new mongoose.Schema(
             type: String,
             required: true
         },
-        youtubeLink: {
+        youtubeEmbedLink: {
             type: String,
             required: false
         },
