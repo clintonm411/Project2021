@@ -10,9 +10,9 @@ function NavBar(props) {
                 </a>
         
                 <ul className="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href={props.link1} className="nav-link px-2 text-secondary">{props.label1}</a></li>
-                <li><a href={props.link2} className="nav-link px-2 text-white">{props.label2}</a></li>
-                <li><a href={props.link3} className="nav-link px-2 text-white">{props.label3}</a></li>
+                <li><a href={props.link1.path} className="nav-link px-2 text-secondary">{props.link1.label}</a></li>
+                <li><a href={props.link2.path} className="nav-link px-2 text-white">{props.link2.label}</a></li>
+                <li><a href={props.link3.path} className="nav-link px-2 text-white">{props.link3.label}</a></li>
                 </ul>
         
                 {/* <form className="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
