@@ -9,7 +9,7 @@ function LoginForm() {
     // (1) Read the values in the input elements
     let emailField;
     let passwordField;
-    let termsAndConditions;
+
 
 
     // This will store text data and attachments
@@ -25,7 +25,7 @@ function LoginForm() {
         return re.test(password);
     }
     
-    function loginUser() {
+    function login() {
             
     
         // (2) Validate the value
@@ -39,13 +39,9 @@ function LoginForm() {
             errors.push('Please enter a password');
         }
     
-        // if( termsAndConditions.checked === false) {
-        //     errors.push('Please accept the terms & conditions');
-        // }
-    
         // If the required fields are valid
         if( errors.length === 0 ) {
-            // Login
+            // Register data
         
             fetch(
                 'http://localhost:3001/users/login',
@@ -94,7 +90,7 @@ function LoginForm() {
 
             <div style={{"display": "none"}} 
             className="alert alert-success user-success">
-            Login successful!
+            You have logged in successfully!
             </div>
 
             <br/>
@@ -102,7 +98,7 @@ function LoginForm() {
             {
                 (state !== 'loading' && state !== 'successful') &&
                 <button 
-                onClick={loginUser}
+                onClick={login}
                 className="btn btn-primary"
                 style={{"padding": "10px", "font-size": "16px"}}>
                     Login
