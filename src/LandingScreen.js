@@ -8,16 +8,7 @@ import Footer from './Footer.js';
 function LandingScreen() {
   return (
     <div>
-      <div>
-      <NavBar 
-        navImage="./logo-anim-2.png"
-        label1 = "Home" link1="/home"
-        label2 = "About" link2="/about"
-        label3 = "Podcasts" link3="/podcasts"
-      ></NavBar>
-      </div>
-
-      <Hero heroImage="./logo-anim-2.png"></Hero>
+      <Hero heroImage="./logo-anim-2.png" heroName="Podcasts"></Hero>
 
       <div id="feature1" class="container px-4 py-5"    id="custom-cards">
         <h2 class="pb-2 border-bottom">Episodes</h2>
@@ -71,20 +62,9 @@ function LandingScreen() {
             ></Card>
           </div>
         </div>
-
-
-      
-
+      </div>
     </div>
-
-    <Footer
-        label1 = "Home" link1="/home"
-        label2 = "About" link2="/about"
-        label3 = "Podcasts" link3="/podcasts"
-      ></Footer>
-    </div>
-
-    
+ 
   );
 }
 
