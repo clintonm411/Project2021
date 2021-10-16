@@ -27,6 +27,7 @@ function App() {
             title="Art 1"
             description="This is some text about the art."
             image="./image1.jpg"
+            youtubeLink="https://www.youtube.com/embed/BK64WNo10iU?start=9"
             ></Card>
           </div>
           <div className="col">
@@ -34,6 +35,7 @@ function App() {
             title="Art 2"
             description="This is some text about the art."
             image="./image2.jpg"
+            youtubeLink=""
             ></Card>
           </div>
           <div className="col">
@@ -41,6 +43,7 @@ function App() {
             title="Art 3"
             description="This is some text about the art."
             image="./image3.jpg"
+            youtubeLink=""
             ></Card>
           </div>
           <div className="col" card>
@@ -48,6 +51,7 @@ function App() {
             title="Art 1"
             description="This is some text about the art."
             image="./image2.jpg"
+            youtubeLink=""
             ></Card>
           </div>
           <div className="col">
@@ -55,6 +59,7 @@ function App() {
             title="Art 2"
             description="This is some text about the art."
             image="./image3.jpg"
+            youtubeLink=""
             ></Card>
           </div>
           <div className="col">
@@ -62,6 +67,7 @@ function App() {
             title="Art 3"
             description="This is some text about the art."
             image="./image1.jpg"
+            youtubeLink=""
             ></Card>
           </div>
         </div>
