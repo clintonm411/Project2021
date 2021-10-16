@@ -1,15 +1,14 @@
 import logo from './logo.svg';
-import './App.css';
-import NavBar from './NavBar.js';
+
 import Hero from './Hero.js';
 import Card from './Card.js';
-import Footer from './Footer.js';
 
 function LandingScreen() {
   return (
     <div>
+      
       <Hero heroImage="./logo-anim-2.png" heroName="Podcasts"></Hero>
-
+      <youtubeEmbed></youtubeEmbed>
       <div id="feature1" class="container px-4 py-5"    id="custom-cards">
         <h2 class="pb-2 border-bottom">Episodes</h2>
         <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
@@ -57,7 +56,7 @@ function LandingScreen() {
             <Card
             title="Jojo's daydreams series (Letter F)"
             description="Jojo and his family are off to the farm. Join Jojo and Hetty as they practice the letter F sound."            image="./image1.jpg"
-            youtubeLink="https://www.youtube.com/embed/thAm20mgqmY?start=9"
+            // youtubeLink="https://www.youtube.com/embed/thAm20mgqmY?start=9"
             ></Card>
           </div>
         </div>
