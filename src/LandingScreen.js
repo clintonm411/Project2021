@@ -7,8 +7,11 @@ function LandingScreen() {
   return (
     <div>
       
-      <Hero heroImage="./logo-anim-2.png" heroName="Podcasts"></Hero>
-      <youtubeEmbed></youtubeEmbed>
+      <Hero 
+      heroImage="./logo-anim-2.png" 
+      description="A childrens' podcast web app which allows parents to register and access a secure area featuring an educational and entertaining ABC story series for kids ages 2-4.
+                                You're welcome to the world of fun learning adventures!" 
+      heroName="Podcasts"></Hero>
       <div id="feature1" class="container px-4 py-5"    id="custom-cards">
         <h2 class="pb-2 border-bottom">Episodes</h2>
         <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
