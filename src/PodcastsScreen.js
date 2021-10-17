@@ -1,9 +1,9 @@
 import Hero from "./Hero";
 
-function AboutScreen (){
+function ProductsScreen (){
     return(
-        <Hero heroImage="./logo-anim-2.png" heroNaheroName="About"></Hero>
+        <Hero heroImage="./logo-anim-2.png" heroName="Podcasts"></Hero>
     );
 }
 
-export default AboutScreen;
+export default ProductsScreen;
