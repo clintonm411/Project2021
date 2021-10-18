@@ -6,7 +6,11 @@ function Card(props) {
           <div className="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
             <h2 className="pt-1 mt-1 mb-1 display-6 lh-1 fw-bold">{props.title}</h2>
             <p className="p-1 mb-1 lh-1">{props.description}</p>
-            
+              {(props.podcast) &&
+                <div>
+                <a href={props.podcast}>Podcast</a>
+                </div>
+              }
               {
                 (props.youtubeEmbedLink) &&
                 <div className="ratio ratio-1x1 mt-3 mb-3">

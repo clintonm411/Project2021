@@ -28,6 +28,7 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter B)"
             description="Jojo is taking a nap on the carpet, out of nowhere he spots a bee. Learn letter B word with Jojo."
             image="./image2.jpg"
+            podcast="https://res.cloudinary.com/dxfkzwedw/video/upload/v1634479610/Jojo_s_daydreams_series_-_Short_story_for_kids_-_the_Letter_A_sound_-_Storytime_Haven_o3tzem.mp3"
             youtubeEmbedLink="https://www.youtube.com/embed/ags1UyuD5C0?start=9"
             ></Card>
           </div>
