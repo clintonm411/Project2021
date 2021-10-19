@@ -5,15 +5,15 @@ function RegistrationForm() {
     // RegistrationForm can transition to the following 5 states:
     // (1) initial, (2) loading, (3) validationFailed, (4) successful, (5) unsuccessful
     const [state, setState] = useState("initial");
+    const [formErrors, setFormErrors] = useState([]);
 
     // (1) Read the values in the input elements
     let firstNameField;
     let lastNameField;
     let emailField;
     let passwordField;
-    // let phoneField;
-    let termsAndConditions;
-
+    let termsAndConditionsField;
+    let avatar;
 
     // This will store text data and attachments
     const formData = new FormData();
@@ -26,6 +26,21 @@ function RegistrationForm() {
     function validatePassword (password) {
         const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/;
         return re.test(password);
+    }
+
+    function attachFile(evt) {
+
+        
+        // Create an array from the attachment(s)
+        const files = Array.from(evt.target.files);
+        console.log('attachFile', files)
+
+        // For each attachment, append the file to formData
+        files.forEach(
+            function(fileAttachment, index) {
+                formData.append(index, fileAttachment);
+            }
+        )
     }
     
     function register() {
@@ -50,34 +65,54 @@ function RegistrationForm() {
             errors.push('Please enter a password');
         }
     
-        if( termsAndConditions.checked === false) {
+        if( termsAndConditionsField.checked === false) {
             errors.push('Please accept the terms & conditions');
         }
     
+
+
         // If the required fields are valid
         if( errors.length === 0 ) {
+            // Show the preloader
+            setState("loading")
+
+            // Prepare formData for backend
+            formData.append('firstname', firstNameField.value);
+            formData.append('lastname', lastNameField.value);
+            formData.append('email', emailField.value);
+            formData.append('password', passwordField.value);
+
+
+
             // Register data
-        
             fetch(
                 'http://localhost:3001/users/create',
                 {
                     method: 'POST',
                     headers: {
-                        'Content-type': 'application/json'
+                        // 'Content-type': 'application/json'
                     },
-                    body: ''
+                    body: formData
                 }
             )
+            // Convert encoded string to JSON
             .then(
                 function(backendResponse) {
+                    return backendResponse.json()
                 }
             )
             .then(
                 function(jsonResponse) {
+                    if(jsonResponse.email) {
+                        setState("successful")
+                    } else {
+                        setState("unsuccessful")
+                    }   
                 }
             )
             .catch(
                 function(backendError) {
+                    setState("unsuccessful");
                 }
             )
     
@@ -85,6 +120,8 @@ function RegistrationForm() {
         // If the required fields are NOT valid
         else {
             // Indicate the error
+            setState("validationFailed");
+            setFormErrors(errors);
         }
     }
 
@@ -94,39 +131,60 @@ function RegistrationForm() {
             <br/>
 
             <label>Enter your firstname *</label>
-            <input className="field form-control" name="firstName" type="text" />
+            <input ref={
+                function(theComponent) {
+                    firstNameField = theComponent
+                }
+            } className="field form-control" name="firstName" type="text" />
 
             <label>Enter your lastname *</label>
-            <input className="field form-control" name="lastName" type="text" />
+            <input ref={
+                function(theComponent) {
+                    lastNameField = theComponent
+                }
+            } 
+            className="field form-control" name="lastName" type="text" />
 
             <label>Enter your email *</label>
-            <input className="field form-control" name="email" type="text" />
+            <input ref={
+                function(theComponent) {
+                    emailField = theComponent
+                }
+            } 
+            className="field form-control" name="email" type="text" />
 
             <label>Enter a password *</label>
-            <input className="field form-control" name="password" autocomplete="off" type="password" />
+            <input ref={
+                function(theComponent) {
+                    passwordField = theComponent
+                }
+            } 
+            className="field form-control" name="password" autocomplete="off" type="password" />
 
             <br/><br/>
 
             <label>Upload your profile picture</label>
-            <input className="field form-control" id="photo" name="file" type="file" multiple="multiple"/>
+            <input ref={
+                function(theComponent) {
+                    avatar = theComponent
+                }
+            } 
+
+            onClick={attachFile}    
+            onChange={attachFile}
+            className="field form-control" id="photo" name="file" type="file" multiple="multiple"/>
 
             <br/><br/>
 
             <label>Do you agree to terms &amp; conditions? *</label>
-            <input className="checkbox" name="termsConditions" type="checkbox" /> Yes
+            <input ref={
+                function(theComponent) {
+                    termsAndConditionsField = theComponent
+                }
+            }
+            className="checkbox" name="termsConditions" type="checkbox" /> Yes
 
             <br/><br/>
-
-            <div style={{"display": "none"}} 
-            className="alert alert-danger user-errors">
-            </div>
-
-            <div style={{"display": "none"}} 
-            className="alert alert-success user-success">
-            You have registered successfully!
-            </div>
-
-            <br/>
 
             {
                 (state !== 'loading' && state !== 'successful') &&
@@ -145,7 +203,22 @@ function RegistrationForm() {
 
             {
                 state === 'validationFailed' &&
-                <div className="mt-5 alert alert-danger">Please enter correct details</div>
+                <div className="mt-5 alert alert-danger">
+                    Please enter correct details
+                    
+                    <ul>
+                    {
+                        formErrors.map(
+                            function(message) {
+                                return (
+                                    <li>{message}</li>
+                                )
+                           }
+                        ) 
+                    }
+                    </ul>
+
+                </div>
             }
 
             {
