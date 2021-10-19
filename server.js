@@ -1,17 +1,21 @@
 // Import the express function
 const express = require('express'); 
 const mongoose = require('mongoose');
-//CORS - Cross Origin Scripting
-const cors = require("cors");
-//dontenv for reading enviroment variables
+// CORS is Cross-Origin Resource Sharing
+const cors = require('cors');
+// dotenv for reading environment variables
 require('dotenv').config();
+// Import cloudinary
+const cloudinary = require('cloudinary').v2;
+// Import express-form-data
+const expressFormData = require('express-form-data');
 // express() returns an object with all kinds
 // of methods for handling HTTP requests
 const server = express();
 
 // Import the user routes
 const userRoutes = require('./routes/user-routes.js');
-// Import the user routes
+// Import the product routes
 const productRoutes = require('./routes/product-routes.js');
 
 // Connect to MongoDB using mongoose
@@ -35,6 +39,14 @@ mongoose
     }
 );
 
+// Configuration for Cloudinary
+cloudinary.config(
+    {
+        cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+        api_key: process.env.CLOUDINARY_API_KEY,
+        api_secret: process.env.CLOUDINARY_API_SECRET
+    }
+);
 
 
 
@@ -45,10 +57,11 @@ server.use( express.urlencoded({ extended: false }) );
 server.use( express.json() );
 //Configure for CORS request
 server.use( cors() );
+// Configure or form data
+server.use( expressFormData.parse() );
 //Configure for routes
 server.use('/users',userRoutes)
 server.use('/products',productRoutes)
-
 
 // A GET route
 server.get(
