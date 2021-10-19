@@ -1,44 +1,28 @@
 const mongoose = require('mongoose');
 
-// Name,
-// AgeGroup,
-// Description,
-// ActivityList
-
 const ProductSchema = new mongoose.Schema(
     {
         name: {
             type: String,
             required: true
         },
-        ageGroup: {
+        title: {
             type: String,
             required: true
         },
         description: {
             type: String,
-            required: true
+            required: false
         },
-        mediaType: {
+        mediaLink: {
             type: String,
-            required: true
+            required: false
         },
         youtubeEmbedLink: {
             type: String,
             required: false
-        },
-        duration: {
-            type: Number,
-            required: true
-        },
-        mediaLink: {
-            type: String,
-            required: true
-        },
-        ActivityList: {
-            type: String,
-            required: false
         }
+        
     }
 );
 
