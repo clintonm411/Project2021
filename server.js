@@ -14,6 +14,30 @@ const userRoutes = require('./routes/user-routes.js');
 // Import the user routes
 const productRoutes = require('./routes/product-routes.js');
 
+// Connect to MongoDB using mongoose
+const connectionString = process.env.MONGODB_CONNECTION_STRING;
+
+const connectionConfig = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}
+
+mongoose
+.connect(connectionString, connectionConfig)
+.then(
+    function() {
+        console.log("DB is connected");
+    }
+)
+.catch(
+    function(dbError) {
+        console.log("error occured", dbError)
+    }
+);
+
+
+
+
 // Configuration
 //Configure for POST request
 server.use( express.urlencoded({ extended: false }) );
