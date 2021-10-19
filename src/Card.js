@@ -29,15 +29,31 @@ function Card(props) {
             
             <ul className="d-flex list-unstyled mt-auto">
               <li className="me-auto">
-                <a href="/about"><img src="https://res.cloudinary.com/dxfkzwedw/image/upload/v1634393258/story_time_haven_unecpa.jpg" width="32" height="32" className="rounded-circle border border-white"/></a>
-              </li>
-              <li className="d-flex align-items-center me-3">
+              
+              <a href="/about"><button type="button" className="btn">
+                <img src="https://res.cloudinary.com/dxfkzwedw/image/upload/v1634393258/story_time_haven_unecpa.jpg" width="32" height="32" className="rounded-circle border border-white"/>
+                </button></a>
+                <div className="btn-group">
+                {
+                  props.cardEditUrl &&
+                  <a href={props.cardEditUrl}><button type="button" className="btn btn-sm btn-outline-info">Edit</button></a>
+                }
+                {/* <a href="/about"><button type="button" className="btn btn-sm btn-outline-info">Read</button></a> */}
+                
+            </div></li>
+              <li className="d-flex p-3 align-items-center me-3">
                 {/* <svg className="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg> */}
-                <small>Earth</small>
+
+                
+      
+                  <small>{props.cardName}</small>
+
+
+              
               </li>
               <li className="d-flex align-items-center">
                 {/* <svg className="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg> */}
-                <small>3d</small>
+                <small>{props.cardAge}</small>
               </li>
             </ul>
           </div>
