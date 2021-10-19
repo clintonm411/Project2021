@@ -110,5 +110,18 @@ router.post(
     }
 )
 
+router.get(
+    '/get',
+    function(req, res) {
+        UserModel
+        .find()
+        .then(
+            function(dbDocuments) {
+                res.json(dbDocuments)
+            }  
+        )
+        .catch()
+    }
+)
 
 module.exports = router;
