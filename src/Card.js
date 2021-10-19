@@ -8,7 +8,10 @@ function Card(props) {
             <p className="p-1 mb-1 lh-1">{props.description}</p>
               {(props.podcast) &&
                 <div>
-                <a href={props.podcast}>Podcast</a>
+                  <audio controls>
+                    <source src={props.podcast} type="audio/mpeg"/>
+                  Your browser does not support the audio element.
+                  </audio>
                 </div>
               }
               {
