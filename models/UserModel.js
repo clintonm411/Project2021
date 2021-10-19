@@ -22,18 +22,14 @@ const UserSchema = new mongoose.Schema(
         },
         avatar: {
             type: String,
-            required: true
+            required: false
         },
-        subcribed: {
-            type: Boolean,
-            required: true
-        },
-        loggedIn: {
-            type: Boolean,
-            required: true
+        dateCreated: {
+            type: Date,
+            default: Date.now
         }
     }
-)
+);
 
 // Create the Model
 const UserModel = mongoose.model("users", UserSchema);
