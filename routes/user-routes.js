@@ -1,11 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const bcryptjs = require('bcryptjs');
+const cloudinary = require('cloudinary').v2;
 const UserModel = require('../models/UserModel.js');
 const { response } = require('express');
 
-// http://localhost:3001/users/create
-router.post('/create',            
+router.post(
+    '/create',            // http://localhost:3001/users/create
     function(req, res) {
         
 
@@ -20,14 +21,33 @@ router.post('/create',
         UserModel
         .findOne({ email: formData.email })
         .then(
-            function(dbDocument) {
+            async function(dbDocument) {
                 // 2. If email exists, reject the request
                 if( dbDocument ) {
                     res.send("Sorry, an account with that email address already exists.");
+                    console.log("email address already exists.");
                 }
 
                 // 3. If email does not exist, 
                 else {
+                    // If avatar file is included
+                    if( Object.values(req.files).length > 0 ) {
+                        const filePath = Object.values(req.files)[0].path;
+                        // Upload their picture (if provided)
+                        await cloudinary.uploader.upload(
+                            filePath,
+                            function (cloudinaryErr, cloudinaryResult) {
+                                if(cloudinaryErr) {
+                                    console.log(cloudinaryErr);
+                                    res.json({message: "Error uploading image."});
+                                } else {
+                                    formData.avatar = cloudinaryResult.url;
+                                    console.log("Image uploaded");
+                                }
+                            }
+                        );
+                    }
+
                     // 4.1. Generate the salt
                     bcryptjs.genSalt(
                         function(err, theSalt) {
@@ -63,7 +83,7 @@ router.post('/create',
         )
         .catch(
             function(mongooseError) {
-                console.log(mongoosError);
+                console.log(mongooseError);
                 res.send(mongooseError);
             }
         )
@@ -71,8 +91,9 @@ router.post('/create',
     }
 );
 
-// http://localhost:3001/users/find
-router.post('/find', 
+
+router.post(
+    '/find', 
     function(req, res) {
         UserModel
         .findOne({ email: req.body.email })
@@ -87,28 +108,7 @@ router.post('/find',
         )
         .catch()
     }
-);
+)
 
-// http://localhost:3001/users/login
-router.post('/login', 
-    function(req, res) {
-
-    }
-);
-
-// http://localhost:3001/users/logout
-router.post('/logout', 
-    function(req, res) {
-
-    }
-);
-
-// http://localhost:3001/users/update
-router.post(
-    '/update', 
-    function(req, res) {
-
-    }
-);
 
 module.exports = router;
