@@ -11,7 +11,7 @@ function RegistrationForm() {
     let lastNameField;
     let emailField;
     let passwordField;
-    let phoneField;
+    // let phoneField;
     let termsAndConditions;
 
 
