@@ -81,13 +81,14 @@ router.get('/find',
 );
 
 //Find Products by Name
-router.get('/findByName',
+router.get('/findByName/:name',
     function(req, res) {
 
-        let nameQuery = req.query.name;
+        // let nameQuery = req.query.name;
+        let nameQuery = req.params.name;
 
         ProductModel
-        .find({ name: { get: nameQuery } })
+        .find({ name: nameQuery })
         .then(
             function(dbDocument) {
                 res.send(dbDocument)
@@ -125,5 +126,19 @@ router.get('/findByAgeGroup',
 
     }
 );
+
+router.get(
+    '/get',
+    function(req, res) {
+        ProductModel
+        .find()
+        .then(
+            function(dbDocuments) {
+                res.json(dbDocuments)
+            }  
+        )
+        .catch()
+    }
+)
 
 module.exports = router;
