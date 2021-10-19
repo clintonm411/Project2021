@@ -5,6 +5,8 @@ import AboutScreen from './AboutScreen.js';
 import RegistrationScreen from './RegistrationScreen.js';
 import LoginScreen from './LoginScreen.js';
 import PodcastsScreen from './PodcastsScreen.js';
+import ListingScreen from './ListingScreen.js';
+import AddPodcast from './AddPodcast.js';
 
 
 
@@ -17,6 +19,8 @@ function App() {
                 <LayoutRoute path="/register" exact={true} component={RegistrationScreen} />
                 <LayoutRoute path="/login" exact={true} component={LoginScreen} />
                 <LayoutRoute path="/podcasts" exact={true} component={PodcastsScreen} />
+                <LayoutRoute path="/listing" exact={true} component={ListingScreen} />
+                <LayoutRoute path="/addpodcast" exact={true} component={AddPodcast} />
                 {/* 
                 <LayoutRoute path="/contact" exact={true} component={ContactScreen} />
                 <LayoutRoute path="/products" exact={true} component={ProductsScreen} />
