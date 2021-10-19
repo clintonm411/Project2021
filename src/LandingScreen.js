@@ -20,6 +20,7 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter A)"
             description="Jojo would like to become a famous astronaut when he grows up. Learn letter A words with Jojo."
             image="./image1.jpg"
+            podcast=""
             youtubeEmbedLink="https://www.youtube.com/embed/poKCV9EskGg?start=9"
             ></Card>
           </div>
@@ -37,6 +38,7 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter C)"
             description="Care for some carrot cake? Jojo is day dreaming about cake. Let's practice the letter C sound with Jojo."
             image="./image3.jpg"
+            podcast=""
             youtubeEmbedLink="https://www.youtube.com/embed/elVNZ0nutRE?start=9"
             ></Card>
           </div>
@@ -45,6 +47,7 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter D)"
             description="Jojo is at the park and he wishes he had a dog. Find out what letter D words Jojo is practicing at the park."
             image="./image2.jpg"
+            podcast=""
             youtubeEmbedLink="https://www.youtube.com/embed/fcDn_7-bwdU?start=9"
             ></Card>
           </div>
@@ -53,13 +56,16 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter E)"
             description="Jojo loves to read. He is reading about elephants. Join Jojo as he discovers a few words that start with the letter E."
             image="./image3.jpg"
+            podcast=""
             youtubeEmbedLink="https://www.youtube.com/embed/3LZwKqJpypw?start=9"
             ></Card>
           </div>
           <div className="col">
             <Card
             title="Jojo's daydreams series (Letter F)"
-            description="Jojo and his family are off to the farm. Join Jojo and Hetty as they practice the letter F sound."            image="./image1.jpg"
+            description="Jojo and his family are off to the farm. Join Jojo and Hetty as they practice the letter F sound."            
+            image="./image1.jpg"
+            podcast=""
             // youtubeLink="https://www.youtube.com/embed/thAm20mgqmY?start=9"
             ></Card>
           </div>
