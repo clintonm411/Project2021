@@ -29,13 +29,10 @@ router.post('/create',            // http://localhost:3001/products/create
         
         const formData = {
             name: req.body.name,
-            ageGroup: req.body.ageGroup,
+            title: req.body.title,
             description: req.body.description,
-            activityList: req.body.activityList,
-            mediaType: req.body.mediaType,
-            youtubeLink: req.body.youtubeLink,
-            duration: req.body.duration,
-            mediaLink: req.body.mediaLink
+            mediaLink: req.body.mediaLink,
+            youtubeLink: req.body.youtubeLink
         };
 
         
