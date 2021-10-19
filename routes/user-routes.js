@@ -124,4 +124,32 @@ router.get(
     }
 )
 
+router.post(
+    '/logoff',
+    function(req, res) {
+        // UserModel
+        // .find()
+        // .then(
+        //     function(dbDocuments) {
+        //         res.json(dbDocuments)
+        //     }  
+        // )
+        // .catch()
+    }
+)
+
+router.get(
+    '/profile',
+    function(req, res) {
+        // UserModel
+        // .find()
+        // .then(
+        //     function(dbDocuments) {
+        //         res.json(dbDocuments)
+        //     }  
+        // )
+        // .catch()
+    }
+)
+
 module.exports = router;

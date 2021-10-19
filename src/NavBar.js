@@ -1,4 +1,5 @@
 import logo from './logo.svg';
+import NavAvatar from './NavAvatar.js';
 
 function NavBar(props) {
         return(
@@ -24,18 +25,7 @@ function NavBar(props) {
                     <a href={props.signUp.path}><button type="button" className="btn btn-warning">{props.signUp.label}</button></a>
                     </div>
 
-                    <div class="dropdown text-end">
-                        <a href="#" 
-                        class="d-block link-light text-decoration-none dropdown-toggle" 
-                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                            <img src={props.avatar} alt="mdo" width="32" height="32" class="rounded-circle"/>
-                        </a>
-                        <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">Profile</a></li>
-                            <li><hr class="dropdown-divider"/></li>
-                            <li><a class="dropdown-item" href="logout">Log out</a></li>
-                        </ul>
-                    </div>
+                    <NavAvatar avatar="https://github.com/mdo.png"></NavAvatar>
                 </div>
             </div>
         </header>

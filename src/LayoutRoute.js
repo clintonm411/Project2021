@@ -12,7 +12,6 @@ function LayoutRoute(props) {
                 link3={{label: "Podcasts", path: "/podcasts"}}
                 navImage="https://res.cloudinary.com/dxfkzwedw/image/upload/v1634393258/story_time_haven_unecpa.jpg"
                 signUp={{label: "Register", path: "/register"}}
-                avatar="https://github.com/mdo.png"
             ></NavBar>
             <Route path={props.path} exact={props.exact} component={props.component} />
             <Footer
