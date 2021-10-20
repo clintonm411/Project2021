@@ -1,5 +1,6 @@
 function Card(props) {
     let cardUrl = 'url(' + props.image + ")";
+    let EditUrl = "products/" + props.cardName;
     return (        
 
     <div className="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style={{"background-image": cardUrl}}>
@@ -35,8 +36,8 @@ function Card(props) {
                 </button></a>
                 <div className="btn-group">
                 {
-                  props.cardEditUrl &&
-                  <a href={props.cardEditUrl}><button type="button" className="btn btn-sm btn-outline-info">Edit</button></a>
+                  props.cardName &&
+                  <a href={EditUrl}><button type="button" className="btn btn-sm btn-outline-info">Edit</button></a>
                 }
                 {/* <a href="/about"><button type="button" className="btn btn-sm btn-outline-info">Read</button></a> */}
                 

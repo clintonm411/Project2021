@@ -57,6 +57,7 @@ function PodcastView() {
                 youtubeEmbedLink={obj.youtubeEmbedLink}
                 description={obj.description}
                 cardName={obj.name}
+                cardEditUrl="./products/findByName/"
             />
             </div>
         )
