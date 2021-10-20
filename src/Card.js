@@ -1,6 +1,6 @@
 function Card(props) {
     let cardUrl = 'url(' + props.image + ")";
-    let EditUrl = "products/" + props.cardName;
+    let EditUrl = props.route + props.cardName;
     return (        
 
     <div className="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style={{"background-image": cardUrl}}>

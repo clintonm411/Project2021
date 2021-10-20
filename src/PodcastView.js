@@ -52,11 +52,12 @@ function PodcastView() {
             <Card 
                 // image={obj.avatar}
                 title={obj.title}
-                image="./image1.jpg"
+                image="./image2.jpg"
                 podcast={obj.mediaLink}
                 youtubeEmbedLink={obj.youtubeEmbedLink}
                 description={obj.description}
                 cardName={obj.name}
+                route="./podcast/"
             />
             </div>
         )
