@@ -20,7 +20,7 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter A)"
             description="Jojo would like to become a famous astronaut when he grows up. Learn letter A words with Jojo."
             image="./image1.jpg"
-            podcast=""
+            podcast="https://res.cloudinary.com/dwvgdzdrl/video/upload/v1634685779/Jojo_s_day_dreams_-_Letter_A_sound_yqe3jf.mp3"
             youtubeEmbedLink="https://www.youtube.com/embed/poKCV9EskGg?start=9"
             ></Card>
           </div>
@@ -38,7 +38,7 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter C)"
             description="Care for some carrot cake? Jojo is day dreaming about cake. Let's practice the letter C sound with Jojo."
             image="./image3.jpg"
-            podcast=""
+            podcast="https://res.cloudinary.com/dwvgdzdrl/video/upload/v1634686652/Letter_C_Jojo_series_fd6sxt.mp3"
             youtubeEmbedLink="https://www.youtube.com/embed/elVNZ0nutRE?start=9"
             ></Card>
           </div>
@@ -47,7 +47,7 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter D)"
             description="Jojo is at the park and he wishes he had a dog. Find out what letter D words Jojo is practicing at the park."
             image="./image2.jpg"
-            podcast=""
+            podcast="https://res.cloudinary.com/dwvgdzdrl/video/upload/v1634686740/Letter_D_Jojo_Series_cs6hsa.mp3"
             youtubeEmbedLink="https://www.youtube.com/embed/fcDn_7-bwdU?start=9"
             ></Card>
           </div>
@@ -56,17 +56,17 @@ function LandingScreen() {
             title="Jojo's daydreams series (Letter E)"
             description="Jojo loves to read. He is reading about elephants. Join Jojo as he discovers a few words that start with the letter E."
             image="./image3.jpg"
-            podcast=""
+            podcast="https://res.cloudinary.com/dwvgdzdrl/video/upload/v1634687183/Letter_E_Jojo_series_yet18p.mp3"
             youtubeEmbedLink="https://www.youtube.com/embed/3LZwKqJpypw?start=9"
             ></Card>
           </div>
           <div className="col">
             <Card
             title="Jojo's daydreams series (Letter F)"
-            description="Jojo and his family are off to the farm. Join Jojo and Hetty as they practice the letter F sound."            
             image="./image1.jpg"
-            podcast=""
-            // youtubeLink="https://www.youtube.com/embed/thAm20mgqmY?start=9"
+            podcast="https://res.cloudinary.com/dwvgdzdrl/video/upload/v1634687812/Letter_F_Jojo_series_citkr1.mp3"
+            description="Jojo and his family are off to the farm. Join Jojo and Hetty as they practice the letter F sound."            image="./image1.jpg"
+            // youtubeEmbedLink="https://www.youtube.com/embed/thAm20mgqmY?start=9"
             ></Card>
           </div>
         </div>
