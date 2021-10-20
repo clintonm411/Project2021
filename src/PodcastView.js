@@ -18,8 +18,10 @@ function PodcastView() {
 
             setLoading(true);
 
+            let fetchPath=`http://localhost:3001/products/get`
+
             // Make a GET request
-            fetch(`http://localhost:3001/products/get`)
+            fetch(fetchPath)
             // Convert String to JSON
             .then(
                 function(backendResponse) {
