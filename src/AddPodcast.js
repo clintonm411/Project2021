@@ -229,6 +229,12 @@ function AddPodcast() {
                 style={{"padding": "10px", "font-size": "16px"}}>
                     Add Another Podcast
                 </button></a>
+                <button 
+                onClick={AddPodcast}
+                className="btn btn-primary"
+                style={{"padding": "10px", "font-size": "16px"}}>
+                    Add Podcast
+                </button>
                 <div className="alert alert-success">Podcast successfully added </div></div>)
                 
             }
