@@ -72,7 +72,10 @@ function PodcastView() {
     return (
         <Fragment>
             <div className="container" style={{minHeight: 'calc(100vh - 560px)'}}>
-                <h1 className="my-5">Listing</h1>
+                <h1 className="my-5">Podcast Listing</h1>
+                <a href="/AddPodcast">
+                    <button class="btn btn-primary">Add Podcast</button>
+                </a>
             <div id="feature1" class="container px-4 py-5"    id="custom-cards">
                 {/* <h2 class="pb-2 border-bottom">Episodes</h2> */}
                 <div className="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
