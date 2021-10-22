@@ -7,7 +7,7 @@ function ProductsScreen (){
         <Fragment>
             {/* <Hero heroImage="./logo-anim-2.png" heroName="Podcasts"></Hero> */}
 
-            <PodcastView></PodcastView>
+            <PodcastView fetchPath="http://localhost:3001/products/get" ></PodcastView>
         </Fragment>
         
 
