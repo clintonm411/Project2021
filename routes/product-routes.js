@@ -32,7 +32,7 @@ router.post('/create',            // http://localhost:3001/products/create
             title: req.body.title,
             description: req.body.description,
             mediaLink: req.body.mediaLink,
-            youtubeLink: req.body.youtubeLink
+            youtubeEmbedLink: req.body.youtubeEmbedLink
         };
 
         
