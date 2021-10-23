@@ -5,6 +5,10 @@ const cloudinary = require('cloudinary').v2;
 const UserModel = require('../models/UserModel.js');
 const { response } = require('express');
 
+const jwt = require('jsonwebtoken');
+require('dotenv').config();
+const secret = process.env.SECRET;
+
 router.post(
     '/create',            // http://localhost:3001/users/create
     function(req, res) {
@@ -121,6 +125,77 @@ router.get(
             }  
         )
         .catch()
+    }
+)
+
+// /login
+router.post(
+    '/login',
+    (req, res) => {
+
+        // npm packages: passport, passport-jwt, jsonwebtoken
+
+        // Step 1. Capture formData (email & password)
+        const formData = {
+            email: req.body.email,
+            password: req.body.password
+        }
+
+
+        // Step 2a. In database, find account that matches email
+        UserModel.findOne(
+            {email: formData.email},
+            (err, document) => {
+
+                // Step 2b. If email NOT match, reject the login request
+                if(!document) {
+                    res.json({message: "Please check email or password"});
+                }
+
+                // Step 3. If there's matching email, examine the document's password
+                else {
+
+                    // Step 4. Compare the encrypted password in db with incoming password
+                    bcryptjs.compare(formData.password, document.password)
+                    .then(
+                        (isMatch) => {
+
+                            // Step 5a. If the password matches, generate web token (JWT)
+                            if(isMatch === true) {
+                                // Step 6. Send the JWT to the client
+                                const payload = { 
+                                    id: document.id,
+                                    email: document.email
+                                };
+
+                                jwt.sign(
+                                    payload,
+                                    secret,
+                                    (err, jsonwebtoken) => {
+                                        res.json(
+                                            {
+                                                message: 'Login successful',
+                                                jsonwebtoken: jsonwebtoken,
+                                                firstname: document.firstname,
+                                                lastname: document.lastname,
+                                                email: document.email,
+                                                avatar: document.avatar
+                                            }
+                                        )
+                                    }
+                                )
+
+                            }
+
+                            // Step 5b. If password NOT match, reject login request
+                            else {
+                                res.json({message: "Please check email or password"})
+                            }
+                        }
+                    )
+                }
+            }
+        )
     }
 )
 
