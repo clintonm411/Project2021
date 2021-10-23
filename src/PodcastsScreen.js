@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import Hero from "./Hero";
-import PodcastView from "./PodcastView";
+import ViewPodcasts from "./ViewPodcasts";
 
 function ProductsScreen (){
     return(
         <Fragment>
             {/* <Hero heroImage="./logo-anim-2.png" heroName="Podcasts"></Hero> */}
 
-            <PodcastView></PodcastView>
+            <ViewPodcasts></ViewPodcasts>
         </Fragment>
         
 

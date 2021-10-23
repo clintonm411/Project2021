@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react';
 import Card from './Card.js';
 
-function PodcastView() {
+function ViewPodcasts() {
 
     // https://jsonplaceholder.typicode.com/todos/
     // https://jsonplaceholder.typicode.com/posts/1/comments
@@ -91,4 +91,4 @@ function PodcastView() {
     )
 }
 
-export default PodcastView;
+export default ViewPodcasts;
