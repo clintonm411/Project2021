@@ -44,7 +44,7 @@ function LoginForm() {
             // Register data
         
             fetch(
-                'http://localhost:3001/users/login',
+                `${process.env.REACT_APP_BACKEND_URL}/users/login`,
                 {
                     method: 'POST',
                     headers: {

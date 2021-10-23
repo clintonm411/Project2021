@@ -81,7 +81,7 @@ function AddPodcast() {
 
             // AddPodcast data
             fetch(
-                'http://localhost:3001/products/create',
+                `${process.env.REACT_APP_BACKEND_URL}/products/create`,
                 {
                     method: 'POST',
                     headers: {

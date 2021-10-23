@@ -86,7 +86,7 @@ function RegistrationForm() {
 
             // Register data
             fetch(
-                'http://localhost:3001/users/create',
+                `${process.env.REACT_APP_BACKEND_URL}/users/create`,
                 {
                     method: 'POST',
                     headers: {

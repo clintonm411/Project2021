@@ -18,7 +18,7 @@ function PodcastView() {
 
             setLoading(true);
 
-            let fetchPath=`http://localhost:3001/products/get`
+            let fetchPath=`${process.env.REACT_APP_BACKEND_URL}/products/get`
 
             // Make a GET request
             fetch(fetchPath)
