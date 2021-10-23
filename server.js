@@ -25,7 +25,7 @@ const connectionConfig = {
     useNewUrlParser: true,
     useUnifiedTopology: true
 }
-
+ 
 mongoose
 .connect(connectionString, connectionConfig)
 .then(
