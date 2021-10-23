@@ -1,132 +1,134 @@
-import { useState } from 'react';
+import React, { useState, useContext } from 'react';
+// Connect to the context (i.e, global state)
+import { UserContext } from './UserContext';
+
+
+// RegEx (Regular Expressions)
+const validateEmail = (email) => {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
+const validatePassword = (password) => {
+    const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/;
+    return re.test(password);
+}
 
 function LoginForm() {
 
-    // LoginForm can transition to the following 5 states:
-    // (1) initial, (2) loading, (3) validationFailed, (4) successful, (5) unsuccessful
+    // "initial", "sending", "successful", "unsuccessful"
     const [state, setState] = useState("initial");
-
-    // (1) Read the values in the input elements
+    const { updateUser } = useContext(UserContext);
+    
+    // Declare undefined variables for later assignment (ref props)
     let emailField;
     let passwordField;
 
-
-
-    // This will store text data and attachments
+    // To instantiate a FormData object
     const formData = new FormData();
 
-    function validateEmail (email) {
-        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(email);
-    }
-    
-    function validatePassword (password) {
-        const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/;
-        return re.test(password);
-    }
-    
-    function login() {
-            
-    
-        // (2) Validate the value
+    const login = () => {
+
         const errors = [];
-    
-        if( !validateEmail(emailField.value) ) {
-            errors.push('Please enter valid email');
+
+        // 1. Validate the fields
+        if(emailField.value.length === 0) {
+            errors.push("Please enter a valid email address");
         }
-    
-        if( !validatePassword(passwordField.value) ) {
-            errors.push('Please enter a password');
+        if(passwordField.value.length === 0) {
+            errors.push("Please enter a valid password");
         }
-    
-        // If the required fields are valid
-        if( errors.length === 0 ) {
-            // Register data
-        
-            fetch(
-                `${process.env.REACT_APP_BACKEND_URL}/users/login`,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-type': 'application/json'
-                    },
-                    body: ''
-                }
-            )
-            .then(
-                function(backendResponse) {
-                }
-            )
-            .then(
-                function(jsonResponse) {
-                }
-            )
-            .catch(
-                function(backendError) {
-                }
-            )
-    
-        } 
-        // If the required fields are NOT valid
+
+        // 1.1 If there are errors, set the state to "validation error"
+        if(errors.length > 0) {
+            setState("validation error");
+        }
+        // 1.2 If there are no errors, set the state to "sending"
         else {
-            // Indicate the error
+            setState("sending");
+
+            formData.append('email', emailField.value);
+            formData.append('password', passwordField.value);
+
+            fetch(`${process.env.REACT_APP_BACKEND_URL}/users/login`, {
+                method: 'POST',
+                // headers: {"Content-Type": "application/json"},
+                body: formData
+            })
+            // 2.1 If the submission is successful, set the state "successful"
+            .then((backendResponse)=> backendResponse.json())
+            .then((theJson)=>{
+                console.log(theJson);
+
+                updateUser(
+                    {
+                        jsonwebtoken: theJson.jsonwebtoken,
+                        firstname: theJson.firstname,
+                        lastname: theJson.lastname,
+                        email: theJson.email,
+                        avatar: theJson.avatar
+                    }
+                )
+                setState("successful");
+            })
+            // 2.2 If the submission is unsuccessful, set the state "unsuccessful"
+            .catch((error)=>{
+                console.log(error);
+                setState("unsuccessful");
+            });
         }
     }
 
     return (
-        <div className="container" style={{"margin-top": "5em", "max-width": "40em"}}>
-            <h1>Login</h1>
-            <br/>
+        <div className="container" style={{maxWidth: 600, minHeight: 'calc(100vh - 112px)'}}>
 
-            <label>Enter your email *</label>
-            <input className="field form-control" name="email" type="text" />
+            <h1 className="py-5">Login</h1>
 
-            <label>Enter a password *</label>
-            <input className="field form-control" name="password" autocomplete="off" type="password" />
-
-            <div style={{"display": "none"}} 
-            className="alert alert-danger user-errors">
+            <div className="mb-3">
+                <label for="email" className="form-label">Email address</label>
+                <input ref={ (elem)=>emailField = elem } type="email" className="form-control" id="email" aria-describedby="emailHelp" />
+                <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
             </div>
 
-            <div style={{"display": "none"}} 
-            className="alert alert-success user-success">
-            You have logged in successfully!
+            <div className="mb-3">
+                <label for="password" className="form-label">Password</label>
+                <input ref={ (elem)=>passwordField = elem } type="password" className="form-control" id="password" aria-describedby="password" />
             </div>
-
-            <br/>
 
             {
-                (state !== 'loading' && state !== 'successful') &&
+                state !== "sending" && state !== "successful" &&
                 <button 
                 onClick={login}
-                className="btn btn-primary"
-                style={{"padding": "10px", "font-size": "16px"}}>
-                    Login
-                </button>
+                className="btn btn-primary mb-3" type="button">Submit</button>
+            }
+
+            { 
+                state === "validation error" &&
+                <div className="alert alert-danger" role="alert">
+                    Incorrect email or password.
+                </div>
             }
 
             {
-                state === 'loading' &&
+                state === "successful" &&
+                <div className="alert alert-success" role="alert">
+                    You have logged in successfully!
+                </div>
+            }
+
+            {
+                state === "unsuccessful" &&
+                <div className="alert alert-danger" role="alert">
+                    Internal error. Please try again later.
+                </div>
+            }
+
+            {
+                state === "sending" &&
                 <p>Loading...</p>
-            }
-
-            {
-                state === 'validationFailed' &&
-                <div className="mt-5 alert alert-danger">Please enter correct details</div>
-            }
-
-            {
-                state === 'successful' &&
-                <div className="alert alert-success">Login successfully</div>
-            }
-
-            {
-                state === 'unsuccessful' &&
-                <div className="mt-5 alert alert-danger">Something went wrong. Please try again.</div>
             }
         </div>
     )
 }
-
 
 export default LoginForm;
