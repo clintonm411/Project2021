@@ -59,8 +59,9 @@ function PodcastView(props) {
                 youtubeEmbedLink={obj.youtubeEmbedLink}
                 description={obj.description}
                 cardName={obj.name}
-                route="./podcast/"
-            />
+                route="./podcast"
+                id={obj.id}
+            >{obj}</Card>
             </div>
         )
     }

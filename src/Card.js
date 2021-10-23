@@ -1,8 +1,16 @@
+import { Fragment } from "react/cjs/react.production.min";
 import ViewPodcastButton from "./ViewPodcastButton.js";
+
+function viewPodcast(){
+  return(
+    <Fragment>
+      {alert("Hello")}
+    </Fragment>
+  );
+}
 
 function Card(props) {
     let cardUrl = 'url(' + props.image + ")";
-    let EditUrl = "./podcastupdate";
     return (        
 
     <div className="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style={{"background-image": cardUrl}}>
@@ -39,7 +47,8 @@ function Card(props) {
                 <div className="btn-group">
                 {
                   props.cardName &&
-                  <ViewPodcastButton buttonUrl={EditUrl} podcastName={props.cardName} ></ViewPodcastButton>
+                  // <button onClick={viewPodcast}type="button" className="btn btn-sm btn-outline-info">View</button>
+                  <ViewPodcastButton buttonUrl={props.route} podcastName={props.cardName}>{props.children}</ViewPodcastButton>
                 }
                 {/* <a href="/about"><button type="button" className="btn btn-sm btn-outline-info">Read</button></a> */}
                 
