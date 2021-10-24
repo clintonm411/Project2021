@@ -95,6 +95,83 @@ router.post(
     }
 );
 
+// /update
+router.post(
+    '/update',            
+    function(req, res) {    
+        
+
+        const formData = {
+            firstname: req.body.firstname,
+            lastname: req.body.lastname,
+            email: req.body.email
+        };
+
+        // 1. Check if email is found
+        UserModel
+        .findOne({ email: formData.email })
+        .then(
+            async function(dbDocument) {
+                // 2. If email exists, reject the request
+                if( dbDocument ) {
+                    
+                    console.log("email address found");
+                    if( Object.values(req.files).length > 0 ) {
+                        const filePath = Object.values(req.files)[0].path;
+                        // Upload their picture (if provided)
+                        await cloudinary.uploader.upload(
+                            filePath,
+                            function (cloudinaryErr, cloudinaryResult) {
+                                if(cloudinaryErr) {
+                                    console.log(cloudinaryErr);
+                                    res.json({message: "Error uploading image."});
+                                } else {
+                                    formData.avatar = cloudinaryResult.url;
+                                    console.log("Image uploaded");
+                                }
+                            }
+                        );
+                    }
+
+                        let updateOperator ={};
+                        (formData['firstname']) && ( updateOperator['firstname'] = formData['firstname']);
+                        (formData['lastname']) && (updateOperator['lastname'] = formData['lastname']);
+                        (formData['avatar']) && (updateOperator['avatar'] = formData['avatar']);
+                        console.log(updateOperator);
+                        
+                        // 3. Update document in the database
+                        UserModel
+                        .updateOne({email: formData.email},updateOperator)
+                        .then(
+                            function(dbDocument) {
+                                res.json(dbDocument);
+                            }
+                        )
+                        .catch(
+                            function(mongooseError) {
+                                console.log(mongooseError)
+                                res.send("Error occured. Check the shell.");
+                            }
+                        )
+                }
+
+                // 4. If email does not exist, 
+                else {
+                    res.send("Sorry, an account does not already exists.");
+                    
+                }
+            }
+        )
+        .catch(
+            function(mongooseError) {
+                console.log(mongooseError);
+                res.send(mongooseError);
+            }
+        )
+    
+    }
+);
+
 
 router.post(
     '/find', 
