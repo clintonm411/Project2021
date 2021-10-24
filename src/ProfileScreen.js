@@ -1,7 +1,8 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import NavBar from './NavBar';
 // Connect to the context (i.e, global state)
 import {UserContext} from './UserContext';
+import { Link } from 'react-router-dom';
 
 function ProfileScreen() {
 
@@ -19,6 +20,7 @@ function ProfileScreen() {
                         <li>{avatar}</li>
                     </ul>
                 </div>
+                <Link to={`/updateprofile`} className="btn btn-primary me-2">Edit</Link>
             </div>  
         </div>
     )
