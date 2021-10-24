@@ -1,6 +1,14 @@
 import { useState } from 'react';
+import React, { useContext, useEffect } from 'react';
+// Connect to the context (i.e, global state)
+import {UserContext} from './UserContext';
+import { Link } from 'react-router-dom';
+
+
 
 function ProfileUpdateForm() {
+
+    const { firstname, lastname, email, avatar, updateUser } = useContext(UserContext);
 
     // RegistrationForm can transition to the following 5 states:
     // (1) initial, (2) loading, (3) validationFailed, (4) successful, (5) unsuccessful
@@ -11,9 +19,8 @@ function ProfileUpdateForm() {
     let firstNameField;
     let lastNameField;
     let emailField;
-    let passwordField;
     let termsAndConditionsField;
-    let avatar;
+    let avatarField;
 
     // This will store text data and attachments
     const formData = new FormData();
@@ -21,11 +28,6 @@ function ProfileUpdateForm() {
     function validateEmail (email) {
         var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return re.test(email);
-    }
-    
-    function validatePassword (password) {
-        const re = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,16}$/;
-        return re.test(password);
     }
 
     function attachFile(evt) {
@@ -61,12 +63,8 @@ function ProfileUpdateForm() {
             errors.push('Please enter valid email');
         }
     
-        if( !validatePassword(passwordField.value) ) {
-            errors.push('Please enter a password');
-        }
-    
         if( termsAndConditionsField.checked === false) {
-            errors.push('Please accept the terms & conditions');
+            errors.push('Are you sure you want to update?');
         }
     
 
@@ -80,13 +78,12 @@ function ProfileUpdateForm() {
             formData.append('firstname', firstNameField.value);
             formData.append('lastname', lastNameField.value);
             formData.append('email', emailField.value);
-            formData.append('password', passwordField.value);
 
 
 
             // Register data
             fetch(
-                `${process.env.REACT_APP_BACKEND_URL}/users/create`,
+                `${process.env.REACT_APP_BACKEND_URL}/users/update`,
                 {
                     method: 'POST',
                     headers: {
@@ -104,7 +101,19 @@ function ProfileUpdateForm() {
             .then(
                 function(jsonResponse) {
                     if(jsonResponse.email) {
-                        setState("successful")
+                        console.log(jsonResponse);
+
+                updateUser(
+                    {
+                        jsonwebtoken: jsonResponse.jsonwebtoken,
+                        firstname: jsonResponse.firstname,
+                        lastname: jsonResponse.lastname,
+                        email: jsonResponse.email,
+                        avatar: jsonResponse.avatar
+                    }
+                )
+                setState("successful");
+                        
                     } else {
                         setState("unsuccessful")
                     }   
@@ -151,22 +160,14 @@ function ProfileUpdateForm() {
                     emailField = theComponent
                 }
             } 
-            className="field form-control" name="email" type="text" />
-
-            <label>Enter a password *</label>
-            <input ref={
-                function(theComponent) {
-                    passwordField = theComponent
-                }
-            } 
-            className="field form-control" name="password" autocomplete="off" type="password" />
+            className="field form-control" name="email" type="text"  value={email} />
 
             <br/><br/>
 
             <label>Upload your profile picture</label>
             <input ref={
                 function(theComponent) {
-                    avatar = theComponent
+                    avatarField = theComponent
                 }
             } 
 
@@ -192,7 +193,7 @@ function ProfileUpdateForm() {
                 onClick={register}
                 className="btn btn-primary"
                 style={{"padding": "10px", "font-size": "16px"}}>
-                    Register your Interest
+                    Update
                 </button>
             }
 
