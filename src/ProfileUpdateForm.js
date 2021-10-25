@@ -103,16 +103,15 @@ function ProfileUpdateForm() {
                     if(jsonResponse.email) {
                         console.log(jsonResponse);
 
-                updateUser(
-                    {
-                        jsonwebtoken: jsonResponse.jsonwebtoken,
-                        firstname: jsonResponse.firstname,
-                        lastname: jsonResponse.lastname,
-                        email: jsonResponse.email,
-                        avatar: jsonResponse.avatar
-                    }
-                )
-                setState("successful");
+                        updateUser(
+                            {
+                                firstname: jsonResponse.firstname,
+                                lastname: jsonResponse.lastname,
+                                email: jsonResponse.email,
+                                avatar: jsonResponse.avatar
+                            }
+                        )
+                    setState("successful");
                         
                     } else {
                         setState("unsuccessful")
